@@ -1,0 +1,5 @@
+body, html { height:100%; margin:0; padding: 0; }
+#piano {
+    border:solid brown; border-width: 50px 10px 10px; display:block; height:70%; width:100%;
+    -moz-box-sizing: border-box;
+}
