@@ -1,25 +1,25 @@
 (function () {
-    var oDrawZone = document.getElementById("piano");
-    var oCtxt = oDrawZone.getContext('2d');
+    let oDrawZone = document.getElementById("piano");
+    let oCtxt = oDrawZone.getContext('2d');
 
-    var aKeys = ["do","ré","mi","fa","sol","la","si"];
-    var aBKeys = ["do#","ré#",null,"fa#","sol#","la#",null];
-    var iRepeat = 2;
-    var aBlackNotes = [];
-    var aBlackKeys = [];
+    let aKeys = ["do","ré","mi","fa","sol","la","si"];
+    let aBKeys = ["do#","ré#",null,"fa#","sol#","la#",null];
+    let iRepeat = 2;
+    let aBlackNotes = [];
+    let aBlackKeys = [];
     for (let i = 0; i < iRepeat; i++) {
         aBlackNotes = aBlackNotes.concat(aBKeys);
     }
-    var iNbWhiteKeys = aKeys.length * iRepeat;
-    var keyWidth = oDrawZone.clientWidth / iNbWhiteKeys;
-    var iDrawHeight = oDrawZone.clientHeight;
-    var aWhiteKeys = [];
+    let iNbWhiteKeys = aKeys.length * iRepeat;
+    let keyWidth = oDrawZone.clientWidth / iNbWhiteKeys;
+    let iDrawHeight = oDrawZone.clientHeight;
+    let aWhiteKeys = [];
     oDrawZone.setAttribute("width", oDrawZone.clientWidth+"px");
     oDrawZone.setAttribute("height", iDrawHeight+"px");
 
-    var drawKey = function (start,end,type,place) {
-        var iHeight = ( type == 'white' ? 1 : 0.65 );
-        var iLength = iDrawHeight*iHeight;
+    let drawKey = function (start,end,type,place) {
+        let iHeight = ( type == 'white' ? 1 : 0.65 );
+        let iLength = iDrawHeight*iHeight;
         oCtxt.lineWidth = 2;
         oCtxt.strokeStyle = "#000";
         oCtxt.beginPath();
@@ -39,10 +39,10 @@
         } else {
           var num = (10 > place ? '0' + place : place);
         }
-        var source = createSource('medias/wav/key'+num+'.wav', 'audio/wav');
-        // var source2 = createSource('medias/key'+num+'.mp3', 'audio/mp3');
-        // var source3 = createSource('medias/key'+num+'.ogg', 'audio/ogg');
-        var audio = createAudio('key'+num);
+        let source = createSource('medias/wav/key'+num+'.wav', 'audio/wav');
+        // let source2 = createSource('medias/key'+num+'.mp3', 'audio/mp3');
+        // let source3 = createSource('medias/key'+num+'.ogg', 'audio/ogg');
+        let audio = createAudio('key'+num);
         audio.append(source);
         //audio.append(source2);
         // audio.append(source3);
@@ -55,12 +55,12 @@
     }
 
     for (let i = 0; i < iNbWhiteKeys; i ++) {
-        var posX = i * keyWidth;
+        let posX = i * keyWidth;
         drawKey(posX, posX + keyWidth, "white", i + 1);
     }
-    var sBlackPlace = keyWidth*0.75;
+    let sBlackPlace = keyWidth*0.75;
     for (let i = 0; i < iNbWhiteKeys; i ++) {
-        var posX = i * keyWidth;
+        let posX = i * keyWidth;
         if (null != aBlackNotes[i]) {
           drawKey(posX + sBlackPlace, posX + keyWidth/2 + sBlackPlace, "black", i + 1);
         }
